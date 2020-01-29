@@ -2,7 +2,7 @@
 
 namespace Tricorder.NET
 {
-    public sealed class TestFailedException : Exception
+    internal sealed class TestFailedException : Exception
     {
         internal TestFailedException(string message) : base(message)
         {

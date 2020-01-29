@@ -7,33 +7,25 @@ namespace Tricorder.NET
 {
     public abstract class Test
     {
-        protected bool LogOnlyFailures { get; set; }
-
-        private Log Log { get; set; }
-
-        private StackTraceContext Context { get; set; }
-        
-        private bool Initialized { get; set; }
-        
-        private bool Cleaned { get; set; }
-
-        [TestInitialize]
-        public void Initialize()
+        protected Test(bool onlyFailures = false)
         {
-            if(Initialized) return;
-            
-            Log = new Log(LogOnlyFailures);
+            Log = new Log(onlyFailures);
             Context = new StackTraceContext(GetType());
-            Initialized = true;
         }
+
+        private Log Log { get; }
+
+        private StackTraceContext Context { get; }
+
+        private bool Cleaned { get; set; }
 
         [TestCleanup]
         public void Cleanup()
         {
-            if(Cleaned) return;
+            if (Cleaned) return;
 
             Cleaned = true;
-            
+
             if (!Log)
             {
                 throw new TestFailedException(Log.ToString());
