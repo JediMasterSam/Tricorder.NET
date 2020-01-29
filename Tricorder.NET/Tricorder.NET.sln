@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricorder.NET", "Tricorder.NET\Tricorder.NET.csproj", "{B706BCB2-D8C4-447E-8164-24054FB69BB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricorder.Tests", "Tricorder.Tests\Tricorder.Tests.csproj", "{05E6F3AD-5732-4858-88C6-9960C76C67DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricorder.NET.Tests", "Tricorder.NET.Tests\Tricorder.NET.Tests.csproj", "{05E6F3AD-5732-4858-88C6-9960C76C67DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

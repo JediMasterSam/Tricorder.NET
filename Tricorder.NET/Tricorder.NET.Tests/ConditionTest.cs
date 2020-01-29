@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tricorder.NET;
 
-namespace Tricorder.Tests
+namespace Tricorder.NET.Tests
 {
     [TestClass]
     public class ConditionTest : Test
@@ -16,7 +16,9 @@ namespace Tricorder.Tests
             IsTrue(IsTrue(true));
             IsTrue(IsFalse(false));
             IsTrue(IsNull<List<int>>(null));
+            IsTrue(IsNull<int>(null));
             IsTrue(IsNotNull(new List<int>()));
+            IsTrue(IsNotNull<int>(1));
             IsTrue(IsGreaterThan(2, 1));
             IsTrue(IsGreaterThanOrEqualTo(2, 1));
             IsTrue(IsLessThan(1, 2));
@@ -38,7 +40,9 @@ namespace Tricorder.Tests
                          IsFalse(IsFalse(true)) &&
                          IsFalse(IsTrue(false)) &&
                          IsFalse(IsNotNull<List<int>>(null)) &&
+                         IsFalse(IsNotNull<int>(null)) &&
                          IsFalse(IsNull(new List<int>())) &&
+                         IsFalse(IsNull<int>(1)) &&
                          IsFalse(IsLessThan(2, 1)) &&
                          IsFalse(IsLessThanOrEqualTo(2, 1)) &&
                          IsFalse(IsGreaterThan(1, 2)) &&

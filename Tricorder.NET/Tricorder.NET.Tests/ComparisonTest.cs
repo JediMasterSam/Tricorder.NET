@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tricorder.NET;
 
-namespace Tricorder.Tests
+namespace Tricorder.NET.Tests
 {
     [TestClass]
     public class ComparisonTest : Test

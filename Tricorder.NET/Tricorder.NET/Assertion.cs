@@ -13,7 +13,7 @@ namespace Tricorder.NET
             State = state;
             Name = name;
             Message = message;
-            StackFrame = state ? null : context.GetFrames().First();
+            StackFrame = state ? null : context.First();
         }
 
         private bool State { get; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using static System.String;
 
 namespace Tricorder.NET
@@ -19,30 +20,25 @@ namespace Tricorder.NET
 
         private string DeclaringType { get; }
 
-        internal IEnumerable<StackFrame> GetFrames()
+        internal StackFrame First()
         {
-            var stackFrames = new StackTrace(true).GetFrames();
+            return GetFrames().FirstOrDefault(IsMatch);
+        }
 
-            if (stackFrames == null || stackFrames.Length == 0) yield break;
+        private static IEnumerable<StackFrame> GetFrames()
+        {
+            return new StackTrace(true).GetFrames();
+        }
 
-            foreach (var stackFrame in stackFrames)
-            {
-                var declaringType = stackFrame?.GetMethod()?.DeclaringType?.FullName;
+        private bool IsMatch(StackFrame stackFrame)
+        {
+            var declaringType = stackFrame?.GetMethod()?.DeclaringType?.FullName;
 
-                if (IsNullOrEmpty(declaringType)) continue;
+            if (IsNullOrEmpty(declaringType)) return false;
 
-                var index = declaringType.LastIndexOf('+');
+            var index = declaringType.LastIndexOf('+');
 
-                if (index > 0)
-                {
-                    declaringType = declaringType.Substring(0, index);
-                }
-
-                if (DeclaringType == declaringType)
-                {
-                    yield return stackFrame;
-                }
-            }
+            return DeclaringType == (index < 0 ? declaringType : declaringType.Substring(0, index));
         }
     }
 }

@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>Tricorder.NET.Tests</AssemblyName>
+        <RootNamespace>Tricorder.NET.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
