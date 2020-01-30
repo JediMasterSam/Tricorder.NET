@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tricorder.NET;
 
 namespace Tricorder.NET.Tests
 {
     [TestClass]
-    public class ConditionTest : Test
+    public class ConditionTests : Test
     {
         [TestMethod]
         public void True()

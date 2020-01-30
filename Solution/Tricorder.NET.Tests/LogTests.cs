@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tricorder.NET;
+﻿using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tricorder.NET.Tests
 {
     [TestClass]
-    public class LogTest : Test
+    public class LogTests : Test
     {
         [TestMethod]
         [DataRow(1, 1)]
@@ -32,9 +32,9 @@ namespace Tricorder.NET.Tests
         }
 
         [TestMethod]
-        public void OnlyFailures()
+        public void OnlyFailures1()
         {
-            var log = new Log(false);
+            var log = new Log(true);
             var context = new StackTraceContext(GetType());
 
             log.Add(Assertion.AreEqual(1, 1, context));
@@ -52,5 +52,18 @@ namespace Tricorder.NET.Tests
                 IsFalse(assertion);
             }
         }
+
+        [TestMethod]
+        public void OnlyFailures2()
+        {
+            AreEqual(1, 1);
+            AreEqual(1, 1);
+            AreEqual(1, 1);
+            
+            LogOnlyFailures();
+
+            AreEqual(0, Log.Count());
+        }
+        
     }
 }

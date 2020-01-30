@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tricorder.NET;
 
 namespace Tricorder.NET.Tests
 {
     [TestClass]
-    public class ComparisonTest : Test
+    public class ComparisonTests : Test
     {
         [TestMethod]
         public void IsGreaterThan()

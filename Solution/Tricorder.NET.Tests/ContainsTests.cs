@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tricorder.NET;
 
 namespace Tricorder.NET.Tests
 {
     [TestClass]
-    public class ContainsTest : Test
+    public class ContainsTests : Test
     {
         [TestMethod]
         public void Contains()

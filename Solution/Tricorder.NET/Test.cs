@@ -7,13 +7,13 @@ namespace Tricorder.NET
 {
     public abstract class Test
     {
-        protected Test(bool onlyFailures = false)
+        protected Test()
         {
-            Log = new Log(onlyFailures);
+            Log = new Log(false);
             Context = new StackTraceContext(GetType());
         }
-
-        private Log Log { get; }
+        
+        internal Log Log { get; private set; }
 
         private StackTraceContext Context { get; }
 
@@ -32,6 +32,18 @@ namespace Tricorder.NET
             }
 
             WriteLine(Log.ToString());
+        }
+
+        protected void LogOnlyFailures()
+        {
+            var log = new Log(true);
+
+            foreach (var assertion in Log)
+            {
+                log.Add(assertion);
+            }
+
+            Log = log;
         }
 
         protected bool AreEqual<TValue>(TValue expected, TValue actual)
@@ -135,6 +147,31 @@ namespace Tricorder.NET
             {
                 return Log.Add(Assertion.AreEqual(typeof(TException), exception.GetType(), Context));
             }
+        }
+
+        protected void Retry(Action action, int attempts)
+        {
+            if (attempts <= 1)
+            {
+                throw new ArgumentException("The number of attempts must be at least two.", nameof(attempts));
+            }
+
+            var log = Log;
+
+            for (var attempt = 0; attempt < attempts; attempt++)
+            {
+                Log = new Log(log.OnlyFailures);
+                action();
+                
+                if(Log) break;
+            }
+            
+            foreach (var assertion in Log)
+            {
+                log.Add(assertion);
+            }
+
+            Log = log;
         }
     }
 }

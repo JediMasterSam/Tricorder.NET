@@ -1,11 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tricorder.NET;
 
 namespace Tricorder.NET.Tests
 {
     [TestClass]
-    public class StackTraceTest : Test
+    public class StackTraceTests : Test
     {
         [TestMethod]
         public void LineNumber()
