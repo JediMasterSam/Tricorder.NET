@@ -9,7 +9,7 @@ namespace Tricorder.NET
     {
         internal Log(bool onlyFailures)
         {
-            Assertions = new List<string>();
+            Assertions = new List<Assertion>();
             OnlyFailures = onlyFailures;
         }
 
@@ -17,9 +17,9 @@ namespace Tricorder.NET
 
         internal int Failures { get; private set; }
 
-        private List<string> Assertions { get; }
-
-        private bool OnlyFailures { get; }
+        internal bool OnlyFailures { get; }
+        
+        private List<Assertion> Assertions { get; }
 
         public static implicit operator bool(Log log)
         {
@@ -33,7 +33,7 @@ namespace Tricorder.NET
 
         public override string ToString()
         {
-            return $"\nAssertions: {Count}, Passed: {Count - Failures}, Failed: {Failures}\n{Join("\n", Assertions)}";
+            return $"Assertions: {Count}, Passed: {Count - Failures}, Failed: {Failures}\n{Join("\n", Assertions)}";
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -45,12 +45,12 @@ namespace Tricorder.NET
         {
             if (!assertion)
             {
-                Assertions.Add(assertion.ToString());
+                Assertions.Add(assertion);
                 Failures++;
             }
             else if (!OnlyFailures)
             {
-                Assertions.Add(assertion.ToString());
+                Assertions.Add(assertion);
             }
 
             Count++;
