@@ -2,18 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <IsPackable>true</IsPackable>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>Tricorder.NET</Title>
-        <Authors>Sam Gutermuth</Authors>
-        <Description>Improves code analysis by enhancing the functionality of MSTest.</Description>
-        <Copyright>Sam Gutermuth 2019-2020</Copyright>
-        <PackageProjectUrl>https://github.com/JediMasterSam/Tricorder.NET</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/JediMasterSam/Tricorder.NET/blob/master/LICENSE</PackageLicenseUrl>
-        <PackageIconUrl>https://github.com/JediMasterSam/Tricorder.NET/blob/master/icon.png?raw=true</PackageIconUrl>
-        <RepositoryUrl>https://github.com/JediMasterSam/Tricorder.NET</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageTags>Tricorder; test; MSTest; analysis; diagnostics</PackageTags>
+        <AssemblyName>Tricorder.NET</AssemblyName>
+        <RootNamespace>Tricorder.NET</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
