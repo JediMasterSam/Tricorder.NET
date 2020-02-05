@@ -9,7 +9,7 @@
 
 `Tricorder.NET` uses the *Visual Studio Test Platform* to detect and run tests.  After installing `Tricorder.NET`, you may need to install `Microsoft.NET.Test.Sdk` before your IDE allows you run tests.
 
-### Test
+### Code
 
 Once all dependencies have been added to the project, you can now create a test.  To access the functionality of `Tricorder.NET`, your class must extend `Test`.  Other than that, the syntax for test creation is identical to that of `MSTest`.
 
