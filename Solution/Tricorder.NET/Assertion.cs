@@ -286,6 +286,31 @@ namespace Tricorder.NET
         }
 
         /// <summary>
+        /// Is the given expected type assignable to the given actual type?
+        /// </summary>
+        /// <param name="expected">Expected type.</param>
+        /// <param name="actual">Actual type.</param>
+        /// <param name="context">Gets the originator of that issued the state.</param>
+        /// <returns>True if the expected type is assignable to the actual type; otherwise, false.</returns>
+        internal static Assertion IsAssignableTo(Type expected, Type actual, StackTraceContext context)
+        {
+            return IsAssignableTo(expected, actual, nameof(IsAssignableTo), context);
+        }
+
+        /// <summary>
+        /// Is the given value's type assignable to the given type?
+        /// </summary>
+        /// <param name="value">Value.</param>
+        /// <param name="type">Type.</param>
+        /// <param name="context">Gets the originator of that issued the state.</param>
+        /// <typeparam name="TValue">Value type.</typeparam>
+        /// <returns>True if the value's type is assignable to the type; otherwise, false.</returns>
+        internal static Assertion IsInstanceOfType<TValue>(TValue value, Type type, StackTraceContext context)
+        {
+            return IsAssignableTo(value?.GetType(), type, nameof(IsInstanceOfType), context);
+        }
+
+        /// <summary>
         /// Are the given expected and actual values equal?
         /// </summary>
         /// <param name="expected">Expected value.</param>
@@ -301,7 +326,6 @@ namespace Tricorder.NET
                 : new Assertion(false, name, $"Expected {ToString(expected)} but got {ToString(actual)}.", context);
         }
 
-
         /// <summary>
         /// Are the given unexpected and actual values unequal?
         /// </summary>
@@ -316,6 +340,21 @@ namespace Tricorder.NET
             return !Equals(unexpected, actual)
                 ? new Assertion(true, name, $"Did not expect {ToString(unexpected)} and got {ToString(actual)}.", context)
                 : new Assertion(false, name, $"Did not expect {ToString(unexpected)} but got {ToString(actual)}.", context);
+        }
+
+        /// <summary>
+        /// Is the given expected type assignable to the given actual type?
+        /// </summary>
+        /// <param name="expected">Expected type.</param>
+        /// <param name="actual">Actual type.</param>
+        /// <param name="name">Function name.</param>
+        /// <param name="context">Gets the originator of that issued the state.</param>
+        /// <returns>True if the expected type is assignable to the actual type; otherwise, false.</returns>
+        private static Assertion IsAssignableTo(Type expected, Type actual, string name, StackTraceContext context)
+        {
+            return actual != null && actual.IsAssignableFrom(expected)
+                ? new Assertion(true, name, $"The type {ToString(expected)} can be assigned to the type {ToString(actual)}.", context)
+                : new Assertion(false, name, $"The type {ToString(expected)} cannot be assigned to the type {ToString(actual)}.", context);
         }
 
         /// <summary>

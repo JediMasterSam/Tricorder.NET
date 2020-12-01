@@ -263,6 +263,29 @@ namespace Tricorder.NET
         }
 
         /// <summary>
+        /// Is the given expected type assignable to the given actual type?
+        /// </summary>
+        /// <param name="expected">Expected type.</param>
+        /// <param name="actual">Actual type.</param>
+        /// <returns>True if the expected type is assignable to the actual type; otherwise, false.</returns>
+        protected bool IsAssignableTo(Type expected, Type actual)
+        {
+            return Log.Add(Assertion.IsAssignableTo(expected, actual, Context));
+        }
+
+        /// <summary>
+        /// Is the given value's type assignable to the given type?
+        /// </summary>
+        /// <param name="value">Value.</param>
+        /// <param name="type">Type.</param>
+        /// <typeparam name="TValue">Value type.</typeparam>
+        /// <returns>True if the value's type is assignable to the type; otherwise, false.</returns>
+        protected bool IsInstanceOfType<TValue>(TValue value, Type type)
+        {
+            return Log.Add(Assertion.IsInstanceOfType(value, type, Context));
+        }
+
+        /// <summary>
         /// Gets the value associated with the specified key from the given dictionary.
         /// </summary>
         /// <param name="dictionary">Dictionary.</param>
