@@ -43,6 +43,8 @@ In order to validate your program state, you must use the assertion methods inhe
 | SequenceEqual          | Are the two sequences equal?                           |
 | IsEmpty                | Does the set contain no elements?                      |
 | IsNotEmpty             | Does the set contain at least one element?             |
+| IsAssignableTo         | Is the first type assignable to the second type?       |
+| IsInstanceOfType       | Can the value be assigned to the type?                 |
 | TryGetValue            | Is the key present in the dictionary?                  |
 | Throws                 | Does the action throw an exception?                    |
 
